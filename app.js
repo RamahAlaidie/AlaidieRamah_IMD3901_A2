@@ -7,7 +7,7 @@ const server    = http.createServer(app);   // creating server and passing app
 
 const PORT      = 8080;
 server.listen(PORT);   // listening to the local port
-app.use(express.static(__dirname +"\public")); //setting the html directory. _dirname = directory name
+app.use(express.static(__dirname +"/public")); //setting the html directory. _dirname = directory name
 // root "route" i.e. when we go to localhost: 1111 index.html will be served
 
 console. log("listening on port:" + PORT);
