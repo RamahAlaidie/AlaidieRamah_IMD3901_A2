@@ -1,7 +1,7 @@
-/*AFRAME.registerComponent('create_blocks', {
+AFRAME.registerComponent('create_blocks', {
     init: function () 
     {
-      console.log('init component');
+      console.log('listening for creating blocks');
 
       const Context_AF = this;
       
@@ -18,26 +18,28 @@
             Context_AF.el.object3D.scale.set(1.0, 1.0, 1.);
         });
     },
-    createBlocks: function(){
+    createBlocks: function(delta){
         const Context_AF = this;
+        var lastPosition = new CANNON.Vec3(0, 0, 0);
+        var currentPosition = new CANNON.Vec3(0, 0, 0);
+        var position = {x:(10.0 - Math.random()*3.0), y:(0.75 + Math.random()*1.25), z: -10.0-(Math.random()*3.0)};
 
         //creating blocks
         let blockElem = document.createElement('a-entity');
-        blockElem.setAttribute('class','carry');
-        blockElem.setAttribute('geometry',{primitive:'box'});
+        blockElem.setAttribute('class','clickable');
+        blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
+        blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
         blockElem.setAttribute('material', 'color:#b2b2ff;');
-        //cowElem.setAttribute('delete-cow-element','');
+        blockElem.setAttribute('carry_blocks','');
 
+        blockElem.setAttribute('position', position);
+        blockElem.setAttribute('rotation', {x:0, y:Math.random()*360.0, z:0});
+
+        lastPosition = position;
+        let velocity = currentPosition.vsub(lastPosition).scale(1/delta);
+       //blockElem.body.applyLocalImpulse(velocity.scale(50), new CANNON.Vec3(0, 0, 0));
         
-        /*
-        cowElem.setAttribute('position', {x:(Math.random()*6.0)- 3.0, y: 0, z: -4.0-(Math.random()*3.0)});
-        const randScale =0.2+ (Math.random()*0.8);
-        cowElem.setAttribute('scale', {x:randScale, y:randScale, z:randScale});
-        cowElem.setAttribute('rotation', {x:0, y:Math.random()*360.0, z:0});*/
-       
-        //find scene and add cow to scene?*/
-        /*
         let scene= document.querySelector('a-scene');
-        scene.appendChild(cowElem);
+        scene.appendChild(blockElem);
     }
-  });*/
+  });

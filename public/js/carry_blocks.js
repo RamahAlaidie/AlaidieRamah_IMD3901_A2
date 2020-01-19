@@ -1,7 +1,7 @@
 AFRAME.registerComponent('carry_blocks', {
   init: function () 
   {
-    console.log('init component');
+    console.log('listening for Carrying blocks');
 
     const Context_AF = this;
     
@@ -24,11 +24,11 @@ AFRAME.registerComponent('carry_blocks', {
   addChild: function(){
       let scene= document.querySelector("a-scene");
       let camera= document.querySelector(".camera");
-      const Context_AF = this;
-      var child = Context_AF.querySelector('#clickable');
+      let child = new THREE.Object3D();
+      child = this;
 
       console.log('selected camera');
-      scene.appendChild(child);
+      camera.add(child);
       var position =camera.object3D.getWorlPosition();
       child.setAttribute('position', position);
   }
