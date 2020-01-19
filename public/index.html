@@ -9,9 +9,9 @@
         <script src= "js/create_blocks.js"></script>
     </head>
     <body>
-        <!--always needs a scene to hold a-frame entities-->
+        <!--a scene to hold a-frame entities-->
         <a-scene>    
-            <!-- asset management system helps create cache resourse for reuse-->
+            <!-- asset management system e-->
             <a-assets>
                 <!-- img example
                     <img id="mars_img"     src="https://cdn.glitch.com/4d85200f-900f-4f4a-b950-82c4af80c1fb%2FMarsSurface.jpg?1556142234939" crossorigin="anonymous">
@@ -24,6 +24,9 @@
 
             <!-- aframe community component-->
             <a-entity environment= "preset:contact;"> </a-entity>
+
+            <!--creating floor for physics system-->
+            <a-plane static-body position="0 -0.01 0" rotation= "-90 0 0" scale = "75 75 75" ></a-plane>
 
             <!--camera-->
            
@@ -78,9 +81,20 @@
             </a-entity>
 
             <a-entity   
-            id="button" 
+            id="blockSpawnButton" 
             class="clickable"
             position="7.2 0 -5"
+            rotation="0 0 0"
+            scale= "1 1 1"
+            geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"
+            material= "color: #99ccff;"
+            create_blocks="">
+            </a-entity>
+
+            <a-entity   
+            id="HouseSpawnButton" 
+            class="clickable"
+            position="9 0 -5"
             rotation="0 0 0"
             scale= "1 1 1"
             geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"

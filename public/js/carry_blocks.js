@@ -1,3 +1,4 @@
+var carryObject =false;
 AFRAME.registerComponent('carry_blocks', {
   init: function () 
   {
@@ -7,7 +8,11 @@ AFRAME.registerComponent('carry_blocks', {
     
       Context_AF.el.addEventListener('click', function(event){
           console.log('click');
+          if(carryObject==false){
+          carryObject=true;
+          console.log(carryObject);
           Context_AF.addChild();
+        }
       });
 
       Context_AF.el.addEventListener('mouseenter', function(event) {
@@ -22,14 +27,14 @@ AFRAME.registerComponent('carry_blocks', {
 
   },
   addChild: function(){
-      let scene= document.querySelector("a-scene");
       let camera= document.querySelector(".camera");
-      let child = new THREE.Object3D();
-      child = this;
-
-      console.log('selected camera');
-      camera.add(child);
-      var position =camera.object3D.getWorlPosition();
-      child.setAttribute('position', position);
+      //let child = new THREE.Object3D(this);
+      let child = this;
+      camera.object3D.add(child.el.object3D);
+/*
+      var position = new THREE.Vector3();
+      position.getPositionFromMatrix(camera.el.matrixWorld);
+      console.log(position.x + ',' + position.y + ',' + position.z)
+      //child.setAttribute('position', position);*/
   }
 });

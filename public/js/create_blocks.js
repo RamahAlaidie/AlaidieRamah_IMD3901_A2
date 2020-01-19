@@ -20,24 +20,19 @@ AFRAME.registerComponent('create_blocks', {
     },
     createBlocks: function(delta){
         const Context_AF = this;
-        var lastPosition = new CANNON.Vec3(0, 0, 0);
-        var currentPosition = new CANNON.Vec3(0, 0, 0);
-        var position = {x:(10.0 - Math.random()*3.0), y:(0.75 + Math.random()*1.25), z: -10.0-(Math.random()*3.0)};
+        var position = {x:(10.0 - Math.random()*3.0), y:(2 + Math.random()*1.25), z: -10.0-(Math.random()*3.0)};
 
         //creating blocks
         let blockElem = document.createElement('a-entity');
+        blockElem.setAttribute('id','box')
         blockElem.setAttribute('class','clickable');
         blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
         blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
-        blockElem.setAttribute('material', 'color:#b2b2ff;');
+        blockElem.setAttribute('material', 'color:#E6BC5C;');
         blockElem.setAttribute('carry_blocks','');
 
         blockElem.setAttribute('position', position);
         blockElem.setAttribute('rotation', {x:0, y:Math.random()*360.0, z:0});
-
-        lastPosition = position;
-        let velocity = currentPosition.vsub(lastPosition).scale(1/delta);
-       //blockElem.body.applyLocalImpulse(velocity.scale(50), new CANNON.Vec3(0, 0, 0));
         
         let scene= document.querySelector('a-scene');
         scene.appendChild(blockElem);
