@@ -4,6 +4,7 @@
         <title>Assignment 2</title>
         <script src= "https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src= "https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src= "js/carry_blocks.js"></script>
     </head>
     <body>
         <!--always needs a scene to hold a-frame entities-->
@@ -23,9 +24,15 @@
             <a-entity environment= "preset:contact;"> </a-entity>
 
             <!--camera-->
-            <a-entity camera wasd-controls look-controls position= "0 1.2 0">
+           
+            <a-entity camera wasd-controls look-controls position= "0 1.2 0" class= 'camera'>
                 <!--light-->
                 <a-entity light= "type:point; intensity:0.5;" position= "0 1.5 0"></a-entity>
+                <!--a child of camera, raycaster will be used to find selected objects-->
+                <a-entity 
+                    cursor="rayOrigin:mouse"
+                    raycaster="far:20; interval: 100; objects:.clickable; ">
+                </a-entity>
             </a-entity>
 
             <!--information plane when you enter world-->
@@ -50,7 +57,7 @@
             </a-entity>
 
         <!-------------------------------------------- instruction planes ------------------------------------------------------------------------>
-            <a-entity id = "instPan1" position ="5 0.5 -2" rotation ="0 0 0">
+            <a-entity id = "instPan1" position ="6.4 0.5 -5.7" rotation ="0 30 0">
                 <a-entity   
                 id="box" 
                 position="0 0 0"
@@ -71,7 +78,7 @@
             <a-entity   
             id="button" 
             class="clickable"
-            position="0 0 -2"
+            position="7.2 0 -5"
             rotation="0 0 0"
             scale= "1 1 1"
             geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"
@@ -89,11 +96,13 @@
 
             <a-entity   
             id="box" 
+            class="clickable"
             position="5 0.75 5"
             rotation="0 0 0"
             scale= "1 1 1"
             geometry="primitive:box; width: 0.75; height: 0.75; depth:0.75;"
-            material= "color: #b2b2ff;">
+            material= "color: #b2b2ff;"
+            carry_blocks="";>
             </a-entity>
 
             <a-entity 
