@@ -1,5 +1,4 @@
 var carryObject =false;
-var dropObject =false;
 AFRAME.registerComponent('carry_blocks', {
   init: function () 
   {
@@ -10,14 +9,8 @@ AFRAME.registerComponent('carry_blocks', {
       Context_AF.el.addEventListener('click', function(event){
           console.log('click');
           if(carryObject==false){  
-          carryObject=true;       //sets carry object as true so that we cant pick up momre items
           Context_AF.addChild();  //adds child to camera
-          setTimeout(function(){ dropObject=true; }, 50);   //sets that it can drop to true after a delay so that it is not removed automatically
-        }
-        if(dropObject==true){
-          carryObject=false;
-          dropObject=false;
-          Context_AF.removeChild();
+          setTimeout(function(){ carryObject=true; }, 50);       //sets carry object as true so that we cant pick up more items
         }
       });
 
@@ -33,20 +26,41 @@ AFRAME.registerComponent('carry_blocks', {
 
   },
   addChild: function(){
-      let camera= document.querySelector(".camera");
-      let child = this;
-      //console.log(child);
+      let camera= document.querySelector(".camera");    //finds camera
+      let child = this;                                 //selects this item
       //child.el.object3D.position.set(child.el.object3D.position , '0 0 0' );
 
-      camera.object3D.add(child.el.object3D);
+      camera.object3D.add(child.el.object3D);           //adds object as a child of camera
       console.log(child.el.object3D.position);
-      
+
+          //adds event listener which removes item and resets carryobject so we can carry other items
+          child.el.addEventListener('click', function(event){
+            console.log('click');
+            if(carryObject==true){
+            carryObject=false;
+            child.removeChild();
+            }
+          });
   },
 
   removeChild: function(){
     console.log("removing");
     let camera= document.querySelector(".camera");
     let child = this;
-    child.el.parentNode.removeChild(child.el);
+    child.el.parentNode.removeChild(child.el);   //removes child
+
+    var position =  document.querySelector(".camera").getAttribute('position');  //gets position of camera
+    
+    //re-creating blocks
+    let blockElem = document.createElement('a-entity');
+    blockElem.setAttribute('id','box')
+    blockElem.setAttribute('class','clickable');
+    blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
+    blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
+    blockElem.setAttribute('material', 'color:#E6BC5C;');
+    blockElem.setAttribute('carry_blocks','');
+    blockElem.setAttribute('position', {x:position.x, y:position.y, z: position.z});  
+    let scene= document.querySelector('a-scene');
+    scene.appendChild(blockElem);
   }
 });
