@@ -1,4 +1,5 @@
 var carryObject =false;
+var dropObject =false;
 AFRAME.registerComponent('carry_blocks', {
   init: function () 
   {
@@ -8,10 +9,15 @@ AFRAME.registerComponent('carry_blocks', {
     
       Context_AF.el.addEventListener('click', function(event){
           console.log('click');
-          if(carryObject==false){
-          carryObject=true;
-          console.log(carryObject);
-          Context_AF.addChild();
+          if(carryObject==false){  
+          carryObject=true;       //sets carry object as true so that we cant pick up momre items
+          Context_AF.addChild();  //adds child to camera
+          setTimeout(function(){ dropObject=true; }, 50);   //sets that it can drop to true after a delay so that it is not removed automatically
+        }
+        if(dropObject==true){
+          carryObject=false;
+          dropObject=false;
+          Context_AF.removeChild();
         }
       });
 
@@ -28,13 +34,19 @@ AFRAME.registerComponent('carry_blocks', {
   },
   addChild: function(){
       let camera= document.querySelector(".camera");
-      //let child = new THREE.Object3D(this);
       let child = this;
+      //console.log(child);
+      //child.el.object3D.position.set(child.el.object3D.position , '0 0 0' );
+
       camera.object3D.add(child.el.object3D);
-/*
-      var position = new THREE.Vector3();
-      position.getPositionFromMatrix(camera.el.matrixWorld);
-      console.log(position.x + ',' + position.y + ',' + position.z)
-      //child.setAttribute('position', position);*/
+      console.log(child.el.object3D.position);
+      
+  },
+
+  removeChild: function(){
+    console.log("removing");
+    let camera= document.querySelector(".camera");
+    let child = this;
+    child.el.parentNode.removeChild(child.el);
   }
 });
