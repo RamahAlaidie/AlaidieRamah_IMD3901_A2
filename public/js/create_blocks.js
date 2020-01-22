@@ -27,6 +27,7 @@ AFRAME.registerComponent('create_blocks', {
         blockElem.setAttribute('id','box')
         blockElem.setAttribute('class','clickable');
         blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
+
         blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
         blockElem.setAttribute('material', 'color:#E6BC5C;');
         blockElem.setAttribute('carry_blocks','');

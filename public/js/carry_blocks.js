@@ -27,11 +27,14 @@ AFRAME.registerComponent('carry_blocks', {
   },
   addChild: function(){
       let camera= document.querySelector(".camera");    //finds camera
-      let child = this;                                 //selects this item
-      //child.el.object3D.position.set(child.el.object3D.position , '0 0 0' );
-
+      let child = this;                                 //selects this item   
+      child.el.object3D.remove('dynamic-body');
+      camera.object3D.localToWorld(child.el.object3D.position);
       camera.object3D.add(child.el.object3D);           //adds object as a child of camera
-      console.log(child.el.object3D.position);
+      child.el.object3D.position.set(1, 1, -2 );
+
+      //console.log(child.el.object3D);
+     // console.log(child.el.object3D.position);
 
           //adds event listener which removes item and resets carryobject so we can carry other items
           child.el.addEventListener('click', function(event){
