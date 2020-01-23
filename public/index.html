@@ -26,19 +26,24 @@
             <a-entity environment= "preset:contact;"> </a-entity>
 
             <!--creating floor for physics system-->
-         <a-plane static-body position="0 -0.01 0" rotation= "-90 0 0" scale = "75 75 75" ></a-plane>
+            <a-plane static-body position="0 -0.01 0" rotation= "-90 0 0" scale = "75 75 75" ></a-plane>
 
             <!--camera-->
            
-            <a-entity camera wasd-controls look-controls position= "0 1.2 0" class= 'camera'>
-                <!--light-->
-                <a-entity light= "type:point; intensity:0.5;" position= "0 1.5 0"></a-entity>
-                <!--a child of camera, raycaster will be used to find selected objects-->
-                <a-entity 
-                    cursor="rayOrigin:mouse"
-                    raycaster="far:20; interval: 100; objects:.clickable; ">
+           
+                <a-entity camera wasd-controls look-controls position= "0 1.2 0" class= 'camera'>
+                        <!--light-->
+                        <a-entity light= "type:point; intensity:0.5;" position= "0 1.5 0"></a-entity>
+                        
+                        <!--a child of camera, raycaster will be used to find selected objects-->
+                        <a-entity 
+                            cursor="rayOrigin:mouse"
+                            raycaster="far:20; interval: 100; objects:.clickable; ">
+                        </a-entity>
+
+                        <!--a marker for the new object position-->
+                        <a-entity class= 'newPos' position= "0 0 -2"></a-entity>
                 </a-entity>
-            </a-entity>
 
             <!--information plane when you enter world-->
             <a-entity id="initial_infopanel"  position="0 0.5 -4" rotation="-30 0 0">

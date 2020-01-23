@@ -51,22 +51,21 @@ AFRAME.registerComponent('carry_blocks', {
   removeChild: function(){
     console.log("removing");
     let camera= document.querySelector(".camera");
+    let position =  document.querySelector(".newPos").getAttribute('position');  //gets position of camera
+
     let child = this;
-    child.el.parentNode.removeChild(child.el);   //removes child
+    child.el.parentNode.removeChild(child.el);                                    //removes child
 
-    camera.object3D.localToWorld(child.el.object3D.position);
-    var position =  document.querySelector(".camera").getAttribute('position');  //gets position of camera
-
-    
     //re-creating blocks
     let blockElem = document.createElement('a-entity');
-    camera.object3D.localToWorld(blockElem.position);
+
     blockElem.setAttribute('id','box')
     blockElem.setAttribute('class','clickable');
     blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
     blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
     blockElem.setAttribute('material', 'color:#E6BC5C;');
     blockElem.setAttribute('carry_blocks','');
+    
     blockElem.setAttribute('position', {x:position.x, y:position.y, z: position.z-2});  
     let scene= document.querySelector('a-scene');
     scene.appendChild(blockElem);
