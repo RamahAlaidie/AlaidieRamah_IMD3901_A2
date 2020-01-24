@@ -7,6 +7,8 @@
         <script src= "https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
         <script src= "js/carry_blocks.js"></script>
         <script src= "js/create_blocks.js"></script>
+        <script src= "js/create_homes.js"></script>
+        <script src= "js/check_coll.js"></script>
     </head>
     <body>
         <!--a scene to hold a-frame entities-->
@@ -103,12 +105,25 @@
             rotation="0 0 0"
             scale= "1 1 1"
             geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"
-            material= "color: #8FD8D8;"
-            create_blocks="">
+            material= "color: #44E746;"
+            create_homes=""
+            check_coll="">
             </a-entity>
 
-            <a-entity   
-            id="floorPlane" 
+            <!--House Entity-->
+            <a-entity 
+            static-body  
+            id="floorPlane1" 
+            position="10 0.05 -10"
+            rotation="-90 0 0"
+            scale= "1 1 1"
+            geometry="primitive:plane; width: 8; height: 8; "
+            material= "color: #bdbdbd;">
+            </a-entity>
+
+            <a-entity 
+            static-body  
+            id="floorPlane1" 
             position="10 0.05 -10"
             rotation="-90 0 0"
             scale= "1 1 1"

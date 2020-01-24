@@ -51,23 +51,18 @@ AFRAME.registerComponent('carry_blocks', {
   removeChild: function(){
     console.log("removing");
     let camera= document.querySelector(".camera");
-    let position =  document.querySelector(".newPos").getAttribute('position');  //gets position of camera
-
+    let scene =document.querySelector("a-scene");
     let child = this;
-    child.el.parentNode.removeChild(child.el);                                    //removes child
 
-    //re-creating blocks
-    let blockElem = document.createElement('a-entity');
+    //let position =  document.querySelector(".camera").getAttribute('position');  //gets position of camera
 
-    blockElem.setAttribute('id','box')
-    blockElem.setAttribute('class','clickable');
-    blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'})
-    blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
-    blockElem.setAttribute('material', 'color:#E6BC5C;');
-    blockElem.setAttribute('carry_blocks','');
+    camera.object3D.localToWorld(child.el.object3D.position);   //sets child to the world space of the camera 
+    scene.object3D.add(child.el.object3D);                     //adds object as a child of camera
+
+    child.el.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'});
     
-    blockElem.setAttribute('position', {x:position.x, y:position.y, z: position.z-2});  
-    let scene= document.querySelector('a-scene');
-    scene.appendChild(blockElem);
+    child.el.object3D.position.set(1, 1, -2 );                  //sets position relative to the camera
+    child.el.object3D.rotation.set(0, 0, 0 );                   //sets rotation
+
   }
 });
