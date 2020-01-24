@@ -25,7 +25,7 @@
             
 
             <!-- aframe community component-->
-            <a-entity environment= "preset:contact;"> </a-entity>
+            <a-entity environment= "preset:forest;"> </a-entity>
 
             <!--creating floor for physics system-->
             <a-plane static-body position="0 -0.01 0" rotation= "-90 0 0" scale = "75 75 75" ></a-plane>
@@ -40,7 +40,7 @@
                         <!--a child of camera, raycaster will be used to find selected objects-->
                         <a-entity 
                             cursor="rayOrigin:mouse"
-                            raycaster="far:20; interval: 100; objects:.clickable; ">
+                            raycaster="far:10; interval: 100; objects:.clickable; ">
                         </a-entity>
 
                         <!--a marker for the new object position-->
@@ -106,8 +106,7 @@
             scale= "1 1 1"
             geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"
             material= "color: #44E746;"
-            create_homes=""
-            check_coll="">
+            create_homes ="">
             </a-entity>
 
             <!--House Entity-->
@@ -117,18 +116,9 @@
             position="10 0.05 -10"
             rotation="-90 0 0"
             scale= "1 1 1"
-            geometry="primitive:plane; width: 8; height: 8; "
-            material= "color: #bdbdbd;">
-            </a-entity>
-
-            <a-entity 
-            static-body  
-            id="floorPlane1" 
-            position="10 0.05 -10"
-            rotation="-90 0 0"
-            scale= "1 1 1"
-            geometry="primitive:plane; width: 8; height: 8; "
-            material= "color: #bdbdbd;">
+            geometry="primitive:plane; width: 1.5; height: 1.5; "
+            material= "color: #bdbdbd;"
+            check_coll="">
             </a-entity>
 
             <a-entity 

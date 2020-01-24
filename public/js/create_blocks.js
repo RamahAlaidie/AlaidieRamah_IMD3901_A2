@@ -20,14 +20,15 @@ AFRAME.registerComponent('create_blocks', {
     },
     createBlocks: function(){
         const Context_AF = this;
-        var position = {x:(10.0 - Math.random()*3.0), y:(2 + Math.random()*1.25), z: -10.0-(Math.random()*3.0)};
+       
 
         //creating blocks
         for (let i=0; i<5; i++){
+        var position = {x:(10.0 - Math.random()*3.0), y:(2 + Math.random()*1.25), z: -10.0-(Math.random()*3.0)};
         let blockElem = document.createElement('a-entity');
         blockElem.setAttribute('id','box')
         blockElem.setAttribute('class','clickable');
-        blockElem.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'});
+        blockElem.setAttribute('dynamic-body', {mass: '10'}, {linearDamping:'0.001'});
 
         blockElem.setAttribute('geometry',{primitive:'box'}, {width:'0.75'}, {height:'0.75'}, {depth:'0.75'} );
         blockElem.setAttribute('material', 'color:#E6BC5C;');

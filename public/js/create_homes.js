@@ -7,7 +7,7 @@ AFRAME.registerComponent('create_homes', {
               
         Context_AF.el.addEventListener('click', function(event){
             console.log('click');
-            Context_AF.createHomes(); //calling create blocks function
+            //Context_AF.createHomes(); //calling create blocks function
         });
 
         Context_AF.el.addEventListener('mouseenter', function(event){

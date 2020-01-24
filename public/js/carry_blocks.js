@@ -59,7 +59,7 @@ AFRAME.registerComponent('carry_blocks', {
     camera.object3D.localToWorld(child.el.object3D.position);   //sets child to the world space of the camera 
     scene.object3D.add(child.el.object3D);                     //adds object as a child of camera
 
-    child.el.setAttribute('dynamic-body', {mass: '5'}, {linearDamping:'0.0001'});
+    child.el.setAttribute('dynamic-body', {mass: '10'}, {linearDamping:'0.001'});
     
     child.el.object3D.position.set(1, 1, -2 );                  //sets position relative to the camera
     child.el.object3D.rotation.set(0, 0, 0 );                   //sets rotation
