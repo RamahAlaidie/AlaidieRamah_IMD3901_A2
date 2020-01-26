@@ -3,6 +3,6 @@ AFRAME.registerComponent('delete_component', {
     init : function() {
         const Context_AF = this;
         let scene= document.querySelector('a-scene');
-       scene.removeChild(Context_AF.el); 
+        Context_AF.el.parentNode.removeChild(Context_AF.el); 
     }
 });

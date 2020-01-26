@@ -44,24 +44,26 @@ AFRAME.registerComponent('check_coll', {
         let allobjs= document.querySelectorAll("a-entity");
       console.log(allobjs);
 
-      for (let i = 0; i< checkojs.length; i++){
 
-        //delete allobjs[i];
-        checkojs[i].removeAttribute("dynamic-body");                   //removing dynamic-body attribute, which messes with pos & rot of object
-        checkojs[i].setAttribute('delete_component','');
-       }
 
         if ((checkojs[0].getAttribute('material').color=="#44E746") && (checkojs[1].getAttribute('material').color=="#44E746") && (checkojs[2].getAttribute('material').color=="#44E746") &&(checkojs[3].getAttribute('material').color=="#44E746") && (checkojs[4].getAttribute('material').color=="#44E746") && (checkojs[5].getAttribute('material').color=="#44E746")&& (checkroof[0].getAttribute('material').color=="#44E746")){
           console.log("all objects are green");
 
-          for (let i = 8; i< allobjs.length; i++){
+        /*  for (let i = 8; i< allobjs.length; i++){
 
            //delete allobjs[i];
            scene.remove(allojs[i]);
            scene.removeChild(allobjs[i]);
-          }
-/*
+          }*/
           setTimeout(function(){ 
+           
+            for (let i = 8; i< allobjs.length; i++){
+
+              //delete allobjs[i];
+              scene.remove(allobjs[i]);
+             }
+           
+            /*
                     //delete planes     
                     for (let i = 0; i< checkojs.length; i++){
 
@@ -84,26 +86,13 @@ AFRAME.registerComponent('check_coll', {
                       scene.remove(torusobj[i]);
                     } 
                     
-                    j= (Math.random()* 11);
+                    j= 10 + (Math.random()* 11);
 
-                    console.log(j);
+                    console.log(j);*/
           
-          }, 1000)*/
+          }, 1000)
 
-        }
+      }
 
-        else{
-          console.log("Not yet");
-        }
-    },
-
-    /*
-  createHomes: function(){
-    j= (Math.random()* 11);
-
-    console.log(j);
-
-   // for (i=0; i< )
-  }*/
-
+    }
 });

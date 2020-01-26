@@ -10,20 +10,17 @@
         <script src= "js/check_coll.js"></script>
         <script src= "js/reposition_camera.js"></script>
         <script src= "js/delete_component.js"></script>
+        <script src= "js/play_music.js"></script>
+
     </head>
     <body>
         <!--a scene to hold a-frame entities-->
         <a-scene>    
             <!-- asset management system e-->
             <a-assets>
-                <!-- img example
-                    <img id="mars_img"     src="https://cdn.glitch.com/4d85200f-900f-4f4a-b950-82c4af80c1fb%2FMarsSurface.jpg?1556142234939" crossorigin="anonymous">
-                -->
-
-                <!--models-->
                 <a-asset-item id="house_model" src="assets/models/house.obj" crossorigin="anonymous"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="music" src="assets/sounds/gameSound.mp3" response-type="arraybuffer"></a-asset-item>
             </a-assets>
-            
 
             <!-- aframe community component-->
             <a-entity environment= "preset:forest;"> </a-entity>
@@ -84,7 +81,7 @@
                 </a-entity>
 
                 <a-entity position = "-0.8 0.9 0.2" text="value: How to play; color:black; font:exo2bold; width:1.3; anchor:left; baseline:top; wrapCount:12"></a-entity>
-                <a-entity position = "-0.8 0.7 0.2" text="value: Blue - spawns                      Green - Removes remaining objects on platform objects                       Red - Resets world; color:black; width:1.25; font:roboto; anchor:left; baseline:top; wrapCount:25"></a-entity>
+                <a-entity position = "-0.8 0.7 0.2" text="value: Blue - spawns                      Green - Toggle Music                       Red - Resets world; color:black; width:1.25; font:roboto; anchor:left; baseline:top; wrapCount:25"></a-entity>
             </a-entity>
 
             <a-entity   
@@ -106,7 +103,7 @@
             scale= "1 1 1"
             geometry="primitive:cylinder; height: 0.3; radius: 0.5 ;"
             material= "color: #44E746;"
-            create_homes ="">
+            play_music ="">
             </a-entity>
 
             <!--House Entity build blocks-->
