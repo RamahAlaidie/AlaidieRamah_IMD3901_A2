@@ -4,7 +4,7 @@ AFRAME.registerComponent('carry_blocks', {
   {
     console.log('listening for Carrying blocks');
 
-    const Context_AF = this; 
+      const Context_AF = this; 
       Context_AF.el.addEventListener('click', function(event){
           console.log('pick up object');
           //if we are already carrying a block, this will be ignored
