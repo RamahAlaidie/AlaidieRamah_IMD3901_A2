@@ -35,6 +35,7 @@ AFRAME.registerComponent('create_blocks', {
         blockElem.setAttribute('carry_blocks','');
 
         blockElem.setAttribute('position', position);
+        blockElem.setAttribute('PickUp', "true");
         blockElem.setAttribute('rotation', {x:0, y:Math.random()*360.0, z:0});
         
         let scene= document.querySelector('a-scene');
@@ -50,6 +51,7 @@ AFRAME.registerComponent('create_blocks', {
         torElem.setAttribute('geometry',{primitive:'tetrahedron'},{radius: '2'});
         torElem.setAttribute('material', 'color:#E6BC5C;');
         torElem.setAttribute('carry_blocks','');
+        torElem.setAttribute('PickUp', "true");
 
         torElem.setAttribute('position', position);
         torElem.setAttribute('rotation', {x:0, y:Math.random()*360.0, z:0});

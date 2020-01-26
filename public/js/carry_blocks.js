@@ -8,10 +8,18 @@ AFRAME.registerComponent('carry_blocks', {
       Context_AF.el.addEventListener('click', function(event){
           console.log('pick up object');
           //if we are already carrying a block, this will be ignored
-          if(carryObject==false){  
-          Context_AF.addChild();                                 //adds child to camera
-          setTimeout(function(){ carryObject=true; }, 50);       //sets true so that we cant pick up more items
+          
+          if(Context_AF.el.getAttribute('PickUp')=='true'){
+            if(carryObject==false){  
+            Context_AF.addChild();                                 //adds child to camera
+            setTimeout(function(){ carryObject=true; }, 50);       //sets true so that we cant pick up more items
+        }}
+        
+        
+        else{
+          Context_AF.removeItem();
         }
+
       });
 
       Context_AF.el.addEventListener('mouseenter', function(event) {
@@ -54,9 +62,6 @@ AFRAME.registerComponent('carry_blocks', {
     let scene =document.querySelector("a-scene");
     let child = this;
 
-    //let position =  document.querySelector(".camera").getAttribute('position');  //gets position of camera
-
-
     camera.object3D.localToWorld(child.el.object3D.position);   //sets child to the world space of the camera 
     child.el.setAttribute('dynamic-body',{shape:'hull'}, {mass: '15'}, {linearDamping:'0.0001'})
     scene.object3D.add(child.el.object3D);                     //adds object as a child of camera
@@ -65,5 +70,13 @@ AFRAME.registerComponent('carry_blocks', {
     child.el.object3D.position.set(0, 0, -1 );                  //sets position relative to the camera
     child.el.object3D.rotation.set(0, 0, 0 );                   //sets rotation
 
+  },
+
+  removeItem: function(){
+    let child = this; 
+    //child.el.setAttribute('scale',{x:'0',y:'0',z:'0'});
+      child.el.parentNode.removeChild(child.el); 
   }
+
+  
 });

@@ -1,3 +1,4 @@
+
 AFRAME.registerComponent('check_coll', {
     init: function () 
     {
@@ -29,8 +30,7 @@ AFRAME.registerComponent('check_coll', {
                   console.log(objc.el);
                   objc.removeObjects();
                 }
-                
-               // console.log(e);
+
               });
             }
     },
@@ -42,53 +42,33 @@ AFRAME.registerComponent('check_coll', {
         let torusobj = document.querySelectorAll("a-entity[id = 'torus']");
         let scene= document.querySelector('a-scene');
         let allobjs= document.querySelectorAll("a-entity");
-      console.log(allobjs);
+        console.log(allobjs);
 
 
 
         if ((checkojs[0].getAttribute('material').color=="#44E746") && (checkojs[1].getAttribute('material').color=="#44E746") && (checkojs[2].getAttribute('material').color=="#44E746") &&(checkojs[3].getAttribute('material').color=="#44E746") && (checkojs[4].getAttribute('material').color=="#44E746") && (checkojs[5].getAttribute('material').color=="#44E746")&& (checkroof[0].getAttribute('material').color=="#44E746")){
           console.log("all objects are green");
-
-        /*  for (let i = 8; i< allobjs.length; i++){
-
-           //delete allobjs[i];
-           scene.remove(allojs[i]);
-           scene.removeChild(allobjs[i]);
-          }*/
+          
           setTimeout(function(){ 
            
-            for (let i = 8; i< allobjs.length; i++){
-
-              //delete allobjs[i];
+            for (let i = 10; i< allobjs.length; i++){
+              allobjs[i].setAttribute('PickUp','false');
               scene.remove(allobjs[i]);
              }
-           
-            /*
-                    //delete planes     
-                    for (let i = 0; i< checkojs.length; i++){
 
-                      scene.remove(checkojs[i]);
-                    }
-                    for (let i = 0; i< checkroof.length; i++){
-          
-                      scene.remove(checkroof[i]);
-                    }
-                    
-                    //delete boxes
-                    for (let i = 0; i< boxobj.length; i++){
-          
-                      scene.remove(boxobj[i]);
-                    }
-          
-                    //delete triangle
-                    for (let i = 0; i< torusobj.length; i++){
-          
-                      scene.remove(torusobj[i]);
-                    } 
-                    
-                    j= 10 + (Math.random()* 11);
+             /*            for (var i=0; i<3; i++){
+              let houseElem= document.createElement('a-entity');
+              houseElem.setAttribute('obj-model', {obj:'assets/models/house.obj',mlt:'assets/textures/house.mtl'});
+              houseElem.setAttribute('position', {x:(Math.random() * 6.0) - 3.0, y:0, z:-4.0 - (Math.random() * 3.0)});
+      
+              const randScale = 0.2 + (Math.random() * 0.8);
+              houseElem.setAttribute('scale', {x:0.1, y:0.1, z:0.1});
+              houseElem.setAttribute('rotation', {x:0.0, y:Math.random() * 360.0, z:0.0});
+              
+              let scene = document.querySelector('a-scene');
+              scene.appendChild(houseElem);
+            } */
 
-                    console.log(j);*/
           
           }, 1000)
 

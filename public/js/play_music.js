@@ -7,11 +7,12 @@ AFRAME.registerComponent('play_music', {
         Context_AF.soundElem = document.querySelector('#music');
 
         Context_AF.el.addEventListener('click', function(event) {
-            console.log("click");
             //object clicked - lets create a cow!
 
             if (musicPlaying==false){
+                //Context_AF.soundElem.components['sound'].stopSound(); //stop first so we aren't trying to play more than once at same time
                 Context_AF.soundElem.components['sound'].playSound();
+                console.log(Context_AF.soundElem.components['sound']);
                 musicPlaying=true;
             }
 
